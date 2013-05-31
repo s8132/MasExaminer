@@ -1,0 +1,57 @@
+doctype 5
+html
+  head
+    title
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    link(rel='stylesheet', href='/bootstrap/css/bootstrap.css')
+    link(rel='stylesheet', href='/bootstrap/css/bootstrap-responsive.css')
+    script(src='http://code.jquery.com/jquery-1.10.1.min.js')
+  body
+    .navbar.navbar-inverse.navbar-fixed-top
+      .navbar-inner
+        .container-fluid
+          button.btn.btn-navbar(type='button', data-toggle='collapse', data-target='.nav-collapse')
+            span.icon-bar
+            span.icon-bar
+            span.icon-bar
+          a.brand(href='/')
+           img(src="/images/icon2.png") 
+           |  Examiner
+          .nav-collapse.collapse
+            if (everyauth.loggedIn)
+              ul.nav.pull-right
+               li
+                p.navbar-text Zalogowany jako:
+               li.dropdown 
+                a.dropdown-toggle(data-toggle="dropdown", href="#")  #{everyauth.user.imie} #{everyauth.user.nazwisko}
+                    b.caret
+                   ul.dropdown-menu
+                    li
+                     a(href="/logout") Wyloguj
+              if (everyauth.user.type===0)  
+               ul.nav
+                li.active
+                 a(href='#') Przedmioty
+                li
+                 a(href='#about') Testy
+                li
+                 a(href='#contact') Moje oceny
+              if (everyauth.user.type===1)  
+               ul.nav
+                li.active
+                 a(href='#') Klasy
+                li
+                 a(href='#about') Pytania
+                li
+                 a(href='#contact') Inne
+    
+    .container
+        block content
+
+  hr
+  footer
+    p © Company 2013
+ script(src='bootstrap/js/bootstrap.js')
+
+
+    
